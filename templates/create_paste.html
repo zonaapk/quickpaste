@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block seo %}
+    <title>Crear Nuevo Paste - QuickPaste.lat</title>
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Crear Nuevo Paste</h1>
+    <form method="POST" action="{{ url_for('crear_paste') }}">
+        <div class="form-group">
+            <label for="title">Título del Paste</label>
+            <input type="text" id="title" name="title" required placeholder="Ej: Links de Descarga del Proyecto X">
+        </div>
+        <div class="form-group">
+            <label for="content">Contenido</label>
+            <div class="textarea-wrapper">
+                <textarea id="content" name="content" rows="15" required></textarea>
+                <button type="button" id="emoji-btn">😀</button>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar y Obtener Enlace</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const button = document.querySelector('#emoji-btn');
+        const picker = new EmojiButton();
+        const textarea = document.querySelector('#content');
+
+        picker.on('emoji', emoji => {
+            textarea.value += emoji;
+            textarea.focus();
+        });
+
+        button.addEventListener('click', () => {
+            picker.togglePicker(button);
+        });
+    });
+</script>
+{% endblock %}

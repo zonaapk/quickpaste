@@ -1,0 +1,119 @@
+/* --- Variables de Tema Neón --- */
+:root {
+    --bg-color: #0d0221;
+    --surface-color: #1d103b;
+    --primary-color: #2de2e6; /* Cyan Neón */
+    --secondary-color: #f72585; /* Magenta Neón */
+    --text-color: #f4f5fc;
+    --border-color: #3a2d61;
+
+    --font-family: 'Inter', sans-serif;
+
+    /* Efectos de brillo */
+    --neon-glow-primary: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 15px var(--primary-color);
+    --neon-glow-secondary: 0 0 5px var(--secondary-color), 0 0 10px var(--secondary-color);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- Layout y Contenedor Principal --- */
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+header {
+    background-color: transparent;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo {
+    font-weight: 700;
+    font-size: 1.5em;
+    color: var(--primary-color);
+    text-decoration: none;
+    text-shadow: var(--neon-glow-primary);
+}
+nav { display: flex; align-items: center; gap: 15px; }
+footer { text-align: center; margin-top: 50px; padding: 20px 0; border-top: 1px solid var(--border-color); font-size: 0.9em; opacity: 0.7; }
+
+/* --- Botones --- */
+.btn {
+    display: inline-block; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 500;
+    border: 1px solid var(--primary-color); color: var(--primary-color);
+    transition: all 0.2s ease;
+    text-shadow: 0 0 2px var(--primary-color);
+}
+.btn:hover {
+    background-color: var(--primary-color); color: var(--bg-color);
+    box-shadow: var(--neon-glow-primary);
+}
+.btn-primary {
+    background-color: var(--primary-color); color: var(--bg-color);
+    box-shadow: var(--neon-glow-primary);
+}
+.btn-primary:hover {
+    background-color: #59f8fb; border-color: #59f8fb;
+}
+
+/* --- Formularios y Cajas de Contenido --- */
+.form-container, .paste-container, .latest-pastes ul {
+    background-color: var(--surface-color); padding: 30px; border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--primary-color); }
+.form-group input, .form-group textarea {
+    width: 100%; padding: 12px; background-color: var(--bg-color);
+    border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-color);
+    font-size: 1em; font-family: var(--font-family);
+}
+.form-group input:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--primary-color);
+    box-shadow: 0 0 8px var(--primary-color);
+}
+
+/* NUEVO: Contenedor para el Textarea con botón de Emojis */
+.textarea-wrapper { position: relative; }
+#emoji-btn {
+    position: absolute; right: 10px; top: 10px;
+    background: transparent; border: none; font-size: 1.5rem; cursor: pointer;
+    padding: 5px; line-height: 1;
+}
+
+/* --- Vista del Paste --- */
+.paste-header h1 { color: var(--primary-color); text-shadow: var(--neon-glow-primary); }
+.paste-meta { display: flex; gap: 20px; font-size: 0.9em; opacity: 0.8; margin-top: 10px; }
+.paste-content pre { white-space: pre-wrap; word-wrap: break-word; font-size: 1em; }
+.views {
+    background-color: var(--secondary-color); color: var(--text-color);
+    padding: 2px 8px; border-radius: 12px; font-size: 0.8em; font-weight: 700;
+    box-shadow: var(--neon-glow-secondary);
+}
+
+/* NUEVO: Estilo para la caja del enlace a compartir */
+.share-link-container { margin: 25px 0; }
+.share-link-container label { display: block; margin-bottom: 8px; color: var(--primary-color); }
+.share-link-container .input-wrapper { display: flex; }
+.share-link-container input {
+    flex-grow: 1; border-radius: 6px 0 0 6px; border-right: none;
+    background-color: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color); padding: 10px;
+}
+.share-link-container button {
+    padding: 10px 15px; border-radius: 0 6px 6px 0; border: 1px solid var(--primary-color);
+    background-color: var(--primary-color); color: var(--bg-color); font-weight: 700; cursor: pointer;
+}
+
+/* --- Página de Inicio --- */
+.hero h1 { font-size: 2.5em; color: var(--primary-color); text-shadow: var(--neon-glow-primary); margin-bottom: 10px; }
+.latest-pastes a { color: var(--primary-color); text-decoration: none; font-weight: 500; }
+
+/* --- Alertas --- */
+.alert { padding: 15px; margin-bottom: 20px; border-radius: 6px; border: 1px solid; }
+.alert-success { border-color: #2de2e6; color: #2de2e6; background-color: rgba(45, 226, 230, 0.1); }
+.alert-error { border-color: #f72585; color: #f72585; background-color: rgba(247, 37, 133, 0.1); }

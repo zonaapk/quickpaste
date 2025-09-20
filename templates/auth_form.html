@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block seo %}
+    {% if form_type == 'login' %}
+        <title>Iniciar Sesión - QuickPaste.lat</title>
+    {% else %}
+        <title>Registro - QuickPaste.lat</title>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        {% if form_type == 'login' %}
+            <h1>Iniciar Sesión</h1>
+            <form method="POST" action="{{ url_for('login') }}">
+        {% else %}
+            <h1>Crear una Cuenta</h1>
+            <form method="POST" action="{{ url_for('registro') }}">
+        {% endif %}
+            <div class="form-group">
+                <label for="username">Nombre de Usuario</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            {% if form_type == 'login' %}
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            {% else %}
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

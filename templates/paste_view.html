@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block seo %}
+    <title>{{ paste.title }} - QuickPaste.lat</title>
+    <meta name="description" content="{{ paste.content | truncate(155) }}">
+    <meta property="og:title" content="{{ paste.title }}">
+    <meta property="og:description" content="{{ paste.content | truncate(155) }}">
+    <meta property="og:type" content="article">
+{% endblock %}
+
+{% block content %}
+<div class="paste-container">
+    <div class="paste-header">
+        <h1>{{ paste.title }}</h1>
+        <div class="paste-meta">
+            <span>Creado por: {{ paste.author.username }}</span>
+            <span class="views">{{ paste.views }} visitas</span>
+        </div>
+    </div>
+
+    <div class="share-link-container">
+        <label for="share-link">Enlace para Compartir:</label>
+        <div class="input-wrapper">
+            <input type="text" id="share-link" value="{{ full_url }}" readonly>
+            <button onclick="copyLink()">Copiar</button>
+        </div>
+    </div>
+
+    <div class="paste-content">
+        <pre>{{ paste.content }}</pre>
+    </div>
+</div>
+
+<script>
+    // NUEVO: Función para el botón de copiar
+    function copyLink() {
+        const linkInput = document.getElementById('share-link');
+        linkInput.select();
+        document.execCommand('copy');
+        // Opcional: mostrar una pequeña alerta o cambiar el texto del botón
+        alert('¡Enlace copiado!');
+    }
+</script>
+{% endblock %}

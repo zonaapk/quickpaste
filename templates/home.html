@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="hero">
+        <h1>Comparte Texto y Enlaces al Instante</h1>
+        <p>Crea un "paste", obtén un enlace único y compártelo. Así de simple.</p>
+        {% if current_user.is_authenticated %}
+             <a href="{{ url_for('crear_paste') }}" class="btn btn-primary btn-large">Empezar a Crear</a>
+        {% else %}
+             <a href="{{ url_for('registro') }}" class="btn btn-primary btn-large">Crea tu Cuenta Gratis</a>
+        {% endif %}
+    </div>
+    <div class="latest-pastes">
+        <h2>Últimos Pastes Públicos</h2>
+        <ul>
+            {% for paste in pastes %}
+            <li>
+                <a href="{{ url_for('ver_paste', slug=paste.slug) }}">{{ paste.title }}</a>
+                <span class="author">por {{ paste.author.username }}</span>
+            </li>
+            {% else %}
+            <li>Aún no hay pastes. ¡Sé el primero!</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
